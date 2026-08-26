@@ -10,6 +10,28 @@ export const metadata: Metadata = {
 
 const ENTREGUES = [
   {
+    nome: "CariocaTech",
+    segmento: "E-commerce B2B de computadores",
+    ano: "2026",
+    resumo:
+      "Loja de setups e peças organizada por caso de uso, não por especificação técnica — o cliente escolhe pelo que sua empresa faz. Pagamento via Pix, boleto ou cartão, nota fiscal para CNPJ.",
+    stack: "Next.js · Tailwind",
+    url: "https://cariocatech.com",
+    de: "#22D3EE",
+    para: "#0F7F8C",
+  },
+  {
+    nome: "Ortus Pixel",
+    segmento: "Portal de notícias nerd",
+    ano: "2026",
+    resumo:
+      "Portal de notícias sobre cinema, séries e games, com ranking ao vivo por repercussão e cobertura publicada em tempo real.",
+    stack: "Next.js · Tailwind",
+    url: "https://ortuspixel.com",
+    de: "#A855F7",
+    para: "#FF2D95",
+  },
+  {
     nome: "Craque do Pão",
     segmento: "Padaria, confeitaria e restaurante",
     ano: "2026",
@@ -41,6 +63,27 @@ const CONCEITOS = [
   { nome: "Imobiliária", stack: "Next.js + Three.js", cor: "#A855F7" },
   { nome: "Estética Automotiva", stack: "Remix + Spline", cor: "#FF2D95" },
   { nome: "Advocacia", stack: "Laravel + Livewire", cor: "#22C55E" },
+];
+
+const INSTITUCIONAIS = [
+  {
+    nome: "Odonto Aurora",
+    segmento: "Clínica odontológica",
+    paginas: "Início · A clínica · Tratamentos · Contato",
+    cor: "#22D3EE",
+  },
+  {
+    nome: "Vasconcelos & Braga",
+    segmento: "Escritório de advocacia",
+    paginas: "Início · O escritório · Atuação · Contato",
+    cor: "#B08D4F",
+  },
+  {
+    nome: "Colégio Terra Nova",
+    segmento: "Educação básica",
+    paginas: "Início · A escola · Segmentos · Matrículas",
+    cor: "#E07A2F",
+  },
 ];
 
 export default function Portfolio() {
@@ -99,7 +142,9 @@ export default function Portfolio() {
 
       <section className="border-t border-linha bg-void">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="font-mono text-xs uppercase tracking-[0.24em] text-lima">Conceitos autorais</h2>
+          <h2 className="font-mono text-xs uppercase tracking-[0.24em] text-lima">
+            Conceitos — landing pages
+          </h2>
           <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-nevoa/55">
             Sete landing pages completas, uma por segmento, cada uma com direção
             de arte e tecnologia próprias. Marcas fictícias, criadas para
@@ -112,6 +157,30 @@ export default function Portfolio() {
                 <span className="block h-1 w-10 rounded-sm" style={{ background: c.cor }} />
                 <h3 className="font-display mt-5 text-lg font-bold">{c.nome}</h3>
                 <p className="mt-2 font-mono text-sm text-nevoa/45">{c.stack}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-linha bg-void">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <h2 className="font-mono text-xs uppercase tracking-[0.24em] text-lima">
+            Conceitos — sites institucionais
+          </h2>
+          <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-nevoa/55">
+            Diferente da landing page, o institucional tem navegação própria e
+            várias páginas — para quem precisa explicar o negócio inteiro, não
+            só converter numa ação. Marcas fictícias, quatro páginas cada.
+          </p>
+
+          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-linha bg-linha sm:grid-cols-3">
+            {INSTITUCIONAIS.map((c) => (
+              <div key={c.nome} className="group bg-navy p-7 transition-colors hover:bg-navy-alto">
+                <span className="block h-1 w-10 rounded-sm" style={{ background: c.cor }} />
+                <h3 className="font-display mt-5 text-lg font-bold">{c.nome}</h3>
+                <p className="mt-2 text-sm text-nevoa/55">{c.segmento}</p>
+                <p className="mt-3 font-mono text-xs text-nevoa/40">{c.paginas}</p>
               </div>
             ))}
           </div>
