@@ -3,10 +3,9 @@ export const SITE = {
   tagline: "Sites · Webapps · I.A.",
   descricao:
     "Estúdio de criação de sites, webapps e soluções com inteligência artificial para negócios que querem ser levados a sério na internet.",
-  // Troque pelos dados reais antes de publicar
-  email: "[SEU E-MAIL]",
-  whatsapp: "[SEU WHATSAPP]",
-  whatsappLink: "[LINK DO SEU WHATSAPP]",
+  email: "raphaelandretrab@gmail.com",
+  whatsapp: "(21) 99334-6860",
+  whatsappLink: "https://api.whatsapp.com/send?phone=5521993346860",
   instagram: "[SEU INSTAGRAM]",
   cidade: "Rio de Janeiro · atendimento remoto para todo o Brasil",
 };

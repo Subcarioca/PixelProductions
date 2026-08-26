@@ -32,14 +32,26 @@ export default function Contato() {
                   <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-cyan" strokeWidth={1.8} />
                   <div>
                     <p className="font-mono text-xs uppercase tracking-wider text-nevoa/40">WhatsApp</p>
-                    <p className="mt-1 text-[15px] text-nevoa/85">{SITE.whatsapp}</p>
+                    <a
+                      href={SITE.whatsappLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 block text-[15px] text-nevoa/85 transition-colors hover:text-cyan"
+                    >
+                      {SITE.whatsapp}
+                    </a>
                   </div>
                 </li>
                 <li className="flex gap-4">
                   <Mail className="mt-0.5 h-5 w-5 shrink-0 text-cyan" strokeWidth={1.8} />
                   <div>
                     <p className="font-mono text-xs uppercase tracking-wider text-nevoa/40">E-mail</p>
-                    <p className="mt-1 text-[15px] text-nevoa/85">{SITE.email}</p>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      className="mt-1 block text-[15px] text-nevoa/85 transition-colors hover:text-cyan"
+                    >
+                      {SITE.email}
+                    </a>
                   </div>
                 </li>
                 <li className="flex gap-4">

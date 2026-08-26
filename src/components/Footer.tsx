@@ -35,8 +35,21 @@ export default function Footer() {
           <div>
             <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-lima">Contato</h2>
             <ul className="mt-4 flex flex-col gap-2.5 text-sm text-nevoa/60">
-              <li>{SITE.email}</li>
-              <li>{SITE.whatsapp}</li>
+              <li>
+                <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-cyan">
+                  {SITE.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SITE.whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition-colors hover:text-cyan"
+                >
+                  {SITE.whatsapp}
+                </a>
+              </li>
               <li className="text-nevoa/40">{SITE.cidade}</li>
             </ul>
           </div>
