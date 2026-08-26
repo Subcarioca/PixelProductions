@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
@@ -17,8 +18,7 @@ const ENTREGUES = [
       "Loja de setups e peças organizada por caso de uso, não por especificação técnica — o cliente escolhe pelo que sua empresa faz. Pagamento via Pix, boleto ou cartão, nota fiscal para CNPJ.",
     stack: "Next.js · Tailwind",
     url: "https://cariocatech.com",
-    de: "#22D3EE",
-    para: "#0F7F8C",
+    preview: "/portfolio/live-cariocatech.jpg",
   },
   {
     nome: "Ortus Pixel",
@@ -28,41 +28,18 @@ const ENTREGUES = [
       "Portal de notícias sobre cinema, séries e games, com ranking ao vivo por repercussão e cobertura publicada em tempo real.",
     stack: "Next.js · Tailwind",
     url: "https://ortuspixel.com",
-    de: "#A855F7",
-    para: "#FF2D95",
-  },
-  {
-    nome: "Craque do Pão",
-    segmento: "Padaria, confeitaria e restaurante",
-    ano: "2026",
-    resumo:
-      "Landing page para uma padaria tradicional do Rio com duas unidades. Fotos reais dos produtos, integração direta com WhatsApp e iFood de cada loja.",
-    stack: "Next.js · Tailwind · Framer Motion",
-    url: "https://craquedopao.vercel.app",
-    de: "#FF7A1A",
-    para: "#FFD60A",
-  },
-  {
-    nome: "Casas Thereza",
-    segmento: "Produtos naturais do Nordeste",
-    ano: "2026",
-    resumo:
-      "Página de conversão para uma loja de grãos, ervas, temperos e bacalhau. Foco total em levar o visitante ao pedido pelo WhatsApp.",
-    stack: "Next.js · Tailwind · Framer Motion",
-    url: null,
-    de: "#A3E635",
-    para: "#22D3EE",
+    preview: "/portfolio/live-ortuspixel.jpg",
   },
 ];
 
 const CONCEITOS = [
-  { nome: "Barbearia", stack: "Next.js + GSAP", cor: "#FFD60A" },
-  { nome: "Odontologia", stack: "Astro + View Transitions", cor: "#22D3EE" },
-  { nome: "Veterinária", stack: "Nuxt 3 + Motion One", cor: "#A3E635" },
-  { nome: "Restaurante", stack: "SvelteKit + Lenis", cor: "#FF7A1A" },
-  { nome: "Imobiliária", stack: "Next.js + Three.js", cor: "#A855F7" },
-  { nome: "Estética Automotiva", stack: "Remix + Spline", cor: "#FF2D95" },
-  { nome: "Advocacia", stack: "Laravel + Livewire", cor: "#22C55E" },
+  { nome: "Barbearia", stack: "Next.js + GSAP", preview: "/portfolio/landing-barbearia.jpg" },
+  { nome: "Odontologia", stack: "Astro + View Transitions", preview: "/portfolio/landing-odontologia.jpg" },
+  { nome: "Veterinária", stack: "Nuxt 3 + Motion One", preview: "/portfolio/landing-veterinaria.jpg" },
+  { nome: "Restaurante", stack: "SvelteKit + Lenis", preview: "/portfolio/landing-restaurante.jpg" },
+  { nome: "Imobiliária", stack: "Next.js + Three.js", preview: "/portfolio/landing-imobiliaria.jpg" },
+  { nome: "Estética Automotiva", stack: "Remix + Spline", preview: "/portfolio/landing-automotiva.jpg" },
+  { nome: "Advocacia", stack: "Laravel + Livewire", preview: "/portfolio/landing-advocacia.jpg" },
 ];
 
 const INSTITUCIONAIS = [
@@ -70,19 +47,19 @@ const INSTITUCIONAIS = [
     nome: "Odonto Aurora",
     segmento: "Clínica odontológica",
     paginas: "Início · A clínica · Tratamentos · Contato",
-    cor: "#22D3EE",
+    preview: "/portfolio/inst-odonto.jpg",
   },
   {
     nome: "Vasconcelos & Braga",
     segmento: "Escritório de advocacia",
     paginas: "Início · O escritório · Atuação · Contato",
-    cor: "#B08D4F",
+    preview: "/portfolio/inst-advocacia.jpg",
   },
   {
     nome: "Colégio Terra Nova",
     segmento: "Educação básica",
     paginas: "Início · A escola · Segmentos · Matrículas",
-    cor: "#E07A2F",
+    preview: "/portfolio/inst-escola.jpg",
   },
 ];
 
@@ -98,42 +75,37 @@ export default function Portfolio() {
       <section className="mx-auto max-w-6xl px-6 py-20">
         <h2 className="font-mono text-xs uppercase tracking-[0.24em] text-lima">No ar</h2>
 
-        <div className="mt-8 flex flex-col gap-6">
+        <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           {ENTREGUES.map((p) => (
-            <article
-              key={p.nome}
-              className="grid grid-cols-1 overflow-hidden rounded-sm border border-linha md:grid-cols-[1fr_1.2fr]"
-            >
-              <div
-                className="relative min-h-56 p-8"
-                style={{ background: `linear-gradient(150deg, ${p.de}, ${p.para})` }}
-              >
-                <div className="absolute inset-0 bg-navy/55" />
-                <div className="relative flex h-full flex-col justify-end">
-                  <p className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">{p.ano}</p>
-                  <h3 className="font-display mt-2 text-3xl font-bold text-white">{p.nome}</h3>
-                </div>
+            <article key={p.nome} className="overflow-hidden rounded-sm border border-linha">
+              <div className="relative aspect-[16/10] w-full border-b border-linha bg-navy-alto">
+                <Image
+                  src={p.preview}
+                  alt={`Prévia do site ${p.nome}`}
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
-
-              <div className="flex flex-col justify-center bg-navy-alto/40 p-8">
-                <p className="font-mono text-xs uppercase tracking-[0.18em] text-nevoa/40">
+              <div className="bg-navy-alto/40 p-8">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="font-display text-2xl font-bold">{p.nome}</h3>
+                  <span className="font-mono text-xs text-nevoa/40">{p.ano}</span>
+                </div>
+                <p className="mt-1 font-mono text-xs uppercase tracking-[0.18em] text-nevoa/40">
                   {p.segmento}
                 </p>
                 <p className="mt-4 text-[15px] leading-relaxed text-nevoa/65">{p.resumo}</p>
                 <p className="mt-5 font-mono text-sm text-cyan">{p.stack}</p>
-                {p.url ? (
-                  <a
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group mt-6 inline-flex items-center gap-2 self-start font-mono text-sm text-lima"
-                  >
-                    Visitar site
-                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
-                ) : (
-                  <p className="mt-6 font-mono text-sm text-nevoa/35">Aguardando publicação do cliente</p>
-                )}
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group mt-6 inline-flex items-center gap-2 self-start font-mono text-sm text-lima"
+                >
+                  Visitar site
+                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                </a>
               </div>
             </article>
           ))}
@@ -151,12 +123,22 @@ export default function Portfolio() {
             demonstrar possibilidades.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-linha bg-linha sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {CONCEITOS.map((c) => (
-              <div key={c.nome} className="group bg-navy p-7 transition-colors hover:bg-navy-alto">
-                <span className="block h-1 w-10 rounded-sm" style={{ background: c.cor }} />
-                <h3 className="font-display mt-5 text-lg font-bold">{c.nome}</h3>
-                <p className="mt-2 font-mono text-sm text-nevoa/45">{c.stack}</p>
+              <div key={c.nome} className="group overflow-hidden rounded-sm border border-linha">
+                <div className="relative aspect-[16/10] w-full border-b border-linha bg-void">
+                  <Image
+                    src={c.preview}
+                    alt={`Prévia do conceito ${c.nome}`}
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="bg-navy p-6">
+                  <h3 className="font-display text-lg font-bold">{c.nome}</h3>
+                  <p className="mt-2 font-mono text-sm text-nevoa/45">{c.stack}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -174,13 +156,23 @@ export default function Portfolio() {
             só converter numa ação. Marcas fictícias, quatro páginas cada.
           </p>
 
-          <div className="mt-10 grid grid-cols-1 gap-px overflow-hidden rounded-sm border border-linha bg-linha sm:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
             {INSTITUCIONAIS.map((c) => (
-              <div key={c.nome} className="group bg-navy p-7 transition-colors hover:bg-navy-alto">
-                <span className="block h-1 w-10 rounded-sm" style={{ background: c.cor }} />
-                <h3 className="font-display mt-5 text-lg font-bold">{c.nome}</h3>
-                <p className="mt-2 text-sm text-nevoa/55">{c.segmento}</p>
-                <p className="mt-3 font-mono text-xs text-nevoa/40">{c.paginas}</p>
+              <div key={c.nome} className="group overflow-hidden rounded-sm border border-linha">
+                <div className="relative aspect-[16/10] w-full border-b border-linha bg-void">
+                  <Image
+                    src={c.preview}
+                    alt={`Prévia do site institucional ${c.nome}`}
+                    fill
+                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                  />
+                </div>
+                <div className="bg-navy p-6">
+                  <h3 className="font-display text-lg font-bold">{c.nome}</h3>
+                  <p className="mt-2 text-sm text-nevoa/55">{c.segmento}</p>
+                  <p className="mt-3 font-mono text-xs text-nevoa/40">{c.paginas}</p>
+                </div>
               </div>
             ))}
           </div>
