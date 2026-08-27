@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import PreviewVideo from "@/components/PreviewVideo";
 
 export const metadata: Metadata = {
   title: "Portfólio",
@@ -11,16 +11,6 @@ export const metadata: Metadata = {
 
 const ENTREGUES = [
   {
-    nome: "CariocaTech",
-    segmento: "E-commerce B2B de computadores",
-    ano: "2026",
-    resumo:
-      "Loja de setups e peças organizada por caso de uso, não por especificação técnica — o cliente escolhe pelo que sua empresa faz. Pagamento via Pix, boleto ou cartão, nota fiscal para CNPJ.",
-    stack: "Next.js · Tailwind",
-    url: "https://cariocatech.com",
-    preview: "/portfolio/live-cariocatech.jpg",
-  },
-  {
     nome: "Ortus Pixel",
     segmento: "Portal de notícias nerd",
     ano: "2026",
@@ -28,18 +18,28 @@ const ENTREGUES = [
       "Portal de notícias sobre cinema, séries e games, com ranking ao vivo por repercussão e cobertura publicada em tempo real.",
     stack: "Next.js · Tailwind",
     url: "https://ortuspixel.com",
-    preview: "/portfolio/live-ortuspixel.jpg",
+    slug: "live-ortuspixel",
+  },
+  {
+    nome: "CariocaTech",
+    segmento: "E-commerce B2B de computadores",
+    ano: "2026",
+    resumo:
+      "Loja de setups e peças organizada por caso de uso, não por especificação técnica — o cliente escolhe pelo que sua empresa faz. Pagamento via Pix, boleto ou cartão, nota fiscal para CNPJ.",
+    stack: "Next.js · Tailwind",
+    url: "https://cariocatech.com",
+    slug: "live-cariocatech",
   },
 ];
 
 const CONCEITOS = [
-  { nome: "Barbearia", stack: "Next.js + GSAP", preview: "/portfolio/landing-barbearia.jpg" },
-  { nome: "Odontologia", stack: "Astro + View Transitions", preview: "/portfolio/landing-odontologia.jpg" },
-  { nome: "Veterinária", stack: "Nuxt 3 + Motion One", preview: "/portfolio/landing-veterinaria.jpg" },
-  { nome: "Restaurante", stack: "SvelteKit + Lenis", preview: "/portfolio/landing-restaurante.jpg" },
-  { nome: "Imobiliária", stack: "Next.js + Three.js", preview: "/portfolio/landing-imobiliaria.jpg" },
-  { nome: "Estética Automotiva", stack: "Remix + Spline", preview: "/portfolio/landing-automotiva.jpg" },
-  { nome: "Advocacia", stack: "Laravel + Livewire", preview: "/portfolio/landing-advocacia.jpg" },
+  { nome: "Barbearia", stack: "Next.js + GSAP", slug: "landing-barbearia" },
+  { nome: "Odontologia", stack: "Astro + View Transitions", slug: "landing-odontologia" },
+  { nome: "Veterinária", stack: "Nuxt 3 + Motion One", slug: "landing-veterinaria" },
+  { nome: "Restaurante", stack: "SvelteKit + Lenis", slug: "landing-restaurante" },
+  { nome: "Imobiliária", stack: "Next.js + Three.js", slug: "landing-imobiliaria" },
+  { nome: "Estética Automotiva", stack: "Remix + Spline", slug: "landing-automotiva" },
+  { nome: "Advocacia", stack: "Laravel + Livewire", slug: "landing-advocacia" },
 ];
 
 const INSTITUCIONAIS = [
@@ -47,19 +47,19 @@ const INSTITUCIONAIS = [
     nome: "Odonto Aurora",
     segmento: "Clínica odontológica",
     paginas: "Início · A clínica · Tratamentos · Contato",
-    preview: "/portfolio/inst-odonto.jpg",
+    slug: "inst-odonto",
   },
   {
     nome: "Vasconcelos & Braga",
     segmento: "Escritório de advocacia",
     paginas: "Início · O escritório · Atuação · Contato",
-    preview: "/portfolio/inst-advocacia.jpg",
+    slug: "inst-advocacia",
   },
   {
     nome: "Colégio Terra Nova",
     segmento: "Educação básica",
     paginas: "Início · A escola · Segmentos · Matrículas",
-    preview: "/portfolio/inst-escola.jpg",
+    slug: "inst-escola",
   },
 ];
 
@@ -78,13 +78,11 @@ export default function Portfolio() {
         <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-2">
           {ENTREGUES.map((p) => (
             <article key={p.nome} className="overflow-hidden rounded-sm border border-linha">
-              <div className="relative aspect-[16/10] w-full border-b border-linha bg-navy-alto">
-                <Image
-                  src={p.preview}
-                  alt={`Prévia do site ${p.nome}`}
-                  fill
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 50vw"
+              <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-linha bg-navy-alto">
+                <PreviewVideo
+                  src={`/portfolio/${p.slug}.mp4`}
+                  poster={`/portfolio/${p.slug}.jpg`}
+                  alt={`Apresentação do site ${p.nome}`}
                 />
               </div>
               <div className="bg-navy-alto/40 p-8">
@@ -125,14 +123,12 @@ export default function Portfolio() {
 
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {CONCEITOS.map((c) => (
-              <div key={c.nome} className="group overflow-hidden rounded-sm border border-linha">
-                <div className="relative aspect-[16/10] w-full border-b border-linha bg-void">
-                  <Image
-                    src={c.preview}
-                    alt={`Prévia do conceito ${c.nome}`}
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              <div key={c.nome} className="overflow-hidden rounded-sm border border-linha">
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-linha bg-void">
+                  <PreviewVideo
+                    src={`/portfolio/${c.slug}.mp4`}
+                    poster={`/portfolio/${c.slug}.jpg`}
+                    alt={`Apresentação do conceito ${c.nome}`}
                   />
                 </div>
                 <div className="bg-navy p-6">
@@ -158,14 +154,12 @@ export default function Portfolio() {
 
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-3">
             {INSTITUCIONAIS.map((c) => (
-              <div key={c.nome} className="group overflow-hidden rounded-sm border border-linha">
-                <div className="relative aspect-[16/10] w-full border-b border-linha bg-void">
-                  <Image
-                    src={c.preview}
-                    alt={`Prévia do site institucional ${c.nome}`}
-                    fill
-                    className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 100vw, 33vw"
+              <div key={c.nome} className="overflow-hidden rounded-sm border border-linha">
+                <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-linha bg-void">
+                  <PreviewVideo
+                    src={`/portfolio/${c.slug}.mp4`}
+                    poster={`/portfolio/${c.slug}.jpg`}
+                    alt={`Apresentação do site institucional ${c.nome}`}
                   />
                 </div>
                 <div className="bg-navy p-6">
