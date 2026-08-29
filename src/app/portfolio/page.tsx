@@ -134,6 +134,15 @@ export default function Portfolio() {
                 <div className="bg-navy p-6">
                   <h3 className="font-display text-lg font-bold">{c.nome}</h3>
                   <p className="mt-2 font-mono text-sm text-nevoa/45">{c.stack}</p>
+                  <a
+                    href={`/portfolio/${c.slug}.html`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-4 inline-flex items-center gap-2 font-mono text-sm text-lima"
+                  >
+                    Ver conceito
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
                 </div>
               </div>
             ))}
@@ -166,6 +175,15 @@ export default function Portfolio() {
                   <h3 className="font-display text-lg font-bold">{c.nome}</h3>
                   <p className="mt-2 text-sm text-nevoa/55">{c.segmento}</p>
                   <p className="mt-3 font-mono text-xs text-nevoa/40">{c.paginas}</p>
+                  <a
+                    href={`/portfolio/${c.slug}.html`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group mt-4 inline-flex items-center gap-2 font-mono text-sm text-lima"
+                  >
+                    Ver conceito
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
                 </div>
               </div>
             ))}
