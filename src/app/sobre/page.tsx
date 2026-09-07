@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import PageHeader from "@/components/PageHeader";
+import PixelEmblem from "@/components/PixelEmblem";
 
 export const metadata: Metadata = {
   title: "Sobre",
@@ -61,21 +62,27 @@ export default function Sobre() {
             </p>
           </div>
 
-          <div className="rounded-sm border border-linha bg-navy-alto/40 p-8">
-            <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-lima">Como trabalhamos</h2>
-            <dl className="mt-6 flex flex-col gap-5">
-              {[
-                ["Atendimento", "Direto com quem faz o projeto"],
-                ["Formato", "Remoto, para todo o Brasil"],
-                ["Entrega", "Site publicado e domínio configurado"],
-                ["Depois", "Suporte e manutenção opcionais"],
-              ].map(([k, v]) => (
-                <div key={k} className="border-b border-linha pb-5 last:border-0 last:pb-0">
-                  <dt className="font-mono text-xs uppercase tracking-wider text-nevoa/40">{k}</dt>
-                  <dd className="mt-1.5 text-[15px] text-nevoa/80">{v}</dd>
-                </div>
-              ))}
-            </dl>
+          <div className="flex flex-col gap-6">
+            <div className="flex justify-center p-6 rounded-sm border border-linha bg-navy-alto/60">
+              <PixelEmblem size={240} showText={false} showReflection={false} />
+            </div>
+
+            <div className="rounded-sm border border-linha bg-navy-alto/40 p-8">
+              <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-lima">Como trabalhamos</h2>
+              <dl className="mt-6 flex flex-col gap-5">
+                {[
+                  ["Atendimento", "Direto com quem faz o projeto"],
+                  ["Formato", "Remoto, para todo o Brasil"],
+                  ["Entrega", "Site publicado e domínio configurado"],
+                  ["Depois", "Suporte e manutenção opcionais"],
+                ].map(([k, v]) => (
+                  <div key={k} className="border-b border-linha pb-5 last:border-0 last:pb-0">
+                    <dt className="font-mono text-xs uppercase tracking-wider text-nevoa/40">{k}</dt>
+                    <dd className="mt-1.5 text-[15px] text-nevoa/80">{v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
         </div>
       </section>

@@ -50,8 +50,43 @@ body {
   background-size: 44px 44px;
 }
 
-.glow-cyan { box-shadow: 0 0 42px -8px rgba(34, 211, 238, 0.55); }
-.glow-lima { box-shadow: 0 0 42px -8px rgba(163, 230, 53, 0.5); }
+/* Fundo Studio Dark Brick — inspirado no ambiente real da foto */
+.studio-brick-pattern {
+  background-color: #050b18;
+  background-image:
+    radial-gradient(ellipse at 50% 15%, rgba(34, 211, 238, 0.12) 0%, transparent 65%),
+    radial-gradient(ellipse at 85% 30%, rgba(255, 45, 149, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 15% 40%, rgba(163, 230, 53, 0.08) 0%, transparent 50%),
+    linear-gradient(to bottom, rgba(5, 11, 24, 0.88), rgba(6, 15, 36, 0.98)),
+    repeating-linear-gradient(0deg, rgba(27, 45, 85, 0.18) 0, rgba(27, 45, 85, 0.18) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(90deg, rgba(27, 45, 85, 0.14) 0, rgba(27, 45, 85, 0.14) 1px, transparent 1px, transparent 56px);
+}
+
+.studio-desk-surface {
+  background: linear-gradient(180deg, #091533 0%, #050b1a 100%);
+  box-shadow: inset 0 1px 0 0 rgba(34, 211, 238, 0.3), 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+.glow-cyan { box-shadow: 0 0 38px -4px rgba(34, 211, 238, 0.6), 0 0 12px rgba(34, 211, 238, 0.3); }
+.glow-lima { box-shadow: 0 0 38px -4px rgba(163, 230, 53, 0.55), 0 0 12px rgba(163, 230, 53, 0.3); }
+.glow-magenta { box-shadow: 0 0 38px -4px rgba(255, 45, 149, 0.55), 0 0 12px rgba(255, 45, 149, 0.3); }
+.glow-orange { box-shadow: 0 0 38px -4px rgba(255, 122, 26, 0.55), 0 0 12px rgba(255, 122, 26, 0.3); }
+
+.text-glow-cyan {
+  text-shadow: 0 0 16px rgba(34, 211, 238, 0.75), 0 0 32px rgba(34, 211, 238, 0.4);
+}
+.text-glow-lima {
+  text-shadow: 0 0 14px rgba(163, 230, 53, 0.75), 0 0 28px rgba(163, 230, 53, 0.4);
+}
+.text-glow-magenta {
+  text-shadow: 0 0 14px rgba(255, 45, 149, 0.75), 0 0 28px rgba(255, 45, 149, 0.4);
+}
+
+/* Efeito de scanline sutil nos monitores */
+.cyber-scanlines {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.22) 50%);
+  background-size: 100% 4px;
+}
 
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
 .animate-blink { animation: blink 1.4s steps(1, end) infinite; }
@@ -60,3 +95,4 @@ body {
 .animate-marquee { animation: marquee 30s linear infinite; }
 
 ::selection { background: var(--color-cyan); color: var(--color-navy); }
+

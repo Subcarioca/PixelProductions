@@ -11,9 +11,12 @@ export default function Footer() {
             <div className="flex items-center gap-3">
               <PixelMark size={28} />
               <span className="font-display text-base font-bold">
-                <span className="text-cyan">PIXEL</span> <span className="text-nevoa">PRODUCTIONS</span>
+                <span className="text-cyan text-glow-cyan">PIXEL</span> <span className="text-white">PRODUCTIONS</span>
               </span>
             </div>
+            <p className="mt-2 font-mono text-[11px] text-lima font-bold tracking-[0.2em]">
+              SITES ▪ WEBAPPS ▪ I.A.
+            </p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-nevoa/50">
               {SITE.descricao}
             </p>
@@ -33,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-lima">Contato</h2>
+            <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-cyan">Contato Direto</h2>
             <ul className="mt-4 flex flex-col gap-2.5 text-sm text-nevoa/60">
               <li>
                 <a href={`mailto:${SITE.email}`} className="transition-colors hover:text-cyan">
@@ -45,8 +48,9 @@ export default function Footer() {
                   href={SITE.whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-cyan"
+                  className="transition-colors hover:text-lima flex items-center gap-1.5"
                 >
+                  <span className="h-2 w-2 rounded-full bg-lima animate-pulse" />
                   {SITE.whatsapp}
                 </a>
               </li>
@@ -56,10 +60,12 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-linha pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="font-mono text-xs text-nevoa/35">
-            © {new Date().getFullYear()} {SITE.nome}
+          <p className="font-mono text-xs text-nevoa/40">
+            © {new Date().getFullYear()} {SITE.nome} · Todos os direitos reservados
           </p>
-          <p className="font-mono text-xs text-nevoa/35">{SITE.tagline}</p>
+          <p className="font-mono text-xs text-cyan/70 flex items-center gap-2">
+            <span className="text-lima">▪</span> SITES <span className="text-cyan">▪</span> WEBAPPS <span className="text-amarelo">▪</span> I.A.
+          </p>
         </div>
       </div>
     </footer>

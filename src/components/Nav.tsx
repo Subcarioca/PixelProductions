@@ -10,6 +10,12 @@ export default function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [aberto, setAberto] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setAberto(false);
+  }
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -18,8 +24,6 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setAberto(false), [pathname]);
-
   return (
     <header
       className={`sticky top-0 z-50 transition-colors duration-300 ${
@@ -27,12 +31,19 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-3" aria-label="Pixel Productions — início">
-          <PixelMark size={30} />
-          <span className="font-display text-base font-bold tracking-tight sm:text-lg">
-            <span className="text-cyan">PIXEL</span>{" "}
-            <span className="text-nevoa">PRODUCTIONS</span>
-          </span>
+        <Link href="/" className="group flex items-center gap-3" aria-label="Pixel Productions — início">
+          <div className="relative">
+            <PixelMark size={32} />
+          </div>
+          <div className="flex flex-col">
+            <span className="font-display text-base font-bold tracking-tight sm:text-lg">
+              <span className="text-cyan text-glow-cyan">PIXEL</span>{" "}
+              <span className="text-white">PRODUCTIONS</span>
+            </span>
+            <span className="hidden sm:block font-mono text-[10px] tracking-[0.2em] text-lima font-semibold">
+              SITES ▪ WEBAPPS ▪ I.A.
+            </span>
+          </div>
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
@@ -42,11 +53,13 @@ export default function Nav() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`font-mono text-sm transition-colors ${
-                    ativo ? "text-cyan" : "text-nevoa/65 hover:text-nevoa"
+                  className={`font-mono text-sm transition-all ${
+                    ativo
+                      ? "text-cyan font-bold drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]"
+                      : "text-nevoa/65 hover:text-cyan"
                   }`}
                 >
-                  {ativo && <span className="text-lima">/</span>}
+                  {ativo && <span className="text-lima mr-1 font-bold">/</span>}
                   {item.label}
                 </Link>
               </li>
@@ -54,12 +67,18 @@ export default function Nav() {
           })}
         </ul>
 
-        <Link
-          href="/contato"
-          className="hidden rounded-sm bg-cyan px-5 py-2.5 font-display text-sm font-bold text-navy transition-transform hover:-translate-y-0.5 md:inline-block"
-        >
-          Pedir orçamento
-        </Link>
+        <div className="hidden items-center gap-4 md:flex">
+          <div className="hidden lg:flex items-center gap-2 font-mono text-xs text-nevoa/40">
+            <span className="h-1.5 w-1.5 rounded-full bg-lima animate-pulse" />
+            <span>DISPONÍVEL</span>
+          </div>
+          <Link
+            href="/contato"
+            className="rounded-sm bg-cyan px-5 py-2.5 font-display text-sm font-bold text-navy glow-cyan transition-all hover:bg-cyan/90 hover:-translate-y-0.5"
+          >
+            Pedir orçamento
+          </Link>
+        </div>
 
         <button
           type="button"
